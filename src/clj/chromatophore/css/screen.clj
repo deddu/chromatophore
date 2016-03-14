@@ -1,6 +1,12 @@
 (ns chromatophore.css.screen
   (:require [garden.selectors :refer [attr= before]]
-            [garden.stylesheet :refer [at-import]]))
+            [garden.stylesheet :refer [at-import]]
+            [chromatophore.markdown :refer [md]]))
+
+(defn component-style
+  "Extract the style metadata from a component"
+  [component]
+  (-> component meta :style))
 
 (def user-select
   [:-webkit-touch-callout
@@ -74,7 +80,7 @@
 
 (def style
   [unselectable-css-class
-   markdown-css-class
+   (component-style md)
    firefox-empty-contenteditable-workaround
    click-to-edit-style
    click-icon-to-edit-style
