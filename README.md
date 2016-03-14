@@ -7,7 +7,12 @@
 </p>
 
 
-Chromatophore is a collection of reagent components.
+Chromatophore is a collection of reusable reagent components.
+
+The goals of this effort are two-fold:
+
+  - Components should have verified functionality with advanced compilation
+  - There should be out-of-the-box support for server side rendering via Dmitri Sotnikov's [Serverside Reagent Rendering](http://yogthos.net/posts/2015-11-24-Serverside-Reagent.html)
 
 ## Usage
 
