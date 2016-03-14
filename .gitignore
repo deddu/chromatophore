@@ -1,0 +1,7 @@
+.idea/
+.lein-failures
+target/
+*.iml
+node_modules/
+resources/public/css/compiled/
+resources/public/js/compiled/
