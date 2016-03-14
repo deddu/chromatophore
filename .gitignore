@@ -6,3 +6,4 @@ node_modules/
 resources/public/css/compiled/
 resources/public/js/compiled/
 figwheel_server.log
+out/
