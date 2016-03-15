@@ -38,7 +38,8 @@
 
   ;; Use NPM to get slimerjs and phantomjs
   :npm {:dependencies [[slimerjs "0.9.6"
-                        phantomjs-prebuilt "2.1.5"]]}
+                        phantomjs-prebuilt "2.1.5"
+                        karma "0.13.22"]]}
 
   :doo {:build "test"
         :paths {:slimer    "./node_modules/.bin/slimerjs"
