@@ -1,2 +1,6 @@
 lein: lein2
+before_install:
+  - sudo apt-get -qq update
+  - curl -sL https://deb.nodesource.com/setup_5.x | sudo -E bash -
+  - sudo apt-get install -y nodejs
 script: lein2 test
