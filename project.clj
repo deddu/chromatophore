@@ -38,7 +38,7 @@
 
   ;; Use NPM to get slimerjs and phantomjs
   :npm {:dependencies [[slimerjs "0.9.6"
-                        phantomjs2 "2.0.2"]]}
+                        phantomjs-prebuilt "2.1.5"]]}
 
   :doo {:build "test"
         :paths {:slimer    "./node_modules/.bin/slimerjs"
