@@ -1,5 +1,7 @@
 # Chromatophore
 
+[![Build Status](https://travis-ci.org/Sepia-Officinalis/chromatophore.svg)](https://travis-ci.org/Sepia-Officinalis/chromatophore)
+
 <p align="center">
   <img alt="Chromatophore" 
        src="http://api.ning.com/files/DtcI2O2Ry7AJoOIMBphmUFeoaMEubY7gFqlqyrFCXFeQNEndPfCUdRfHTWstQwc1lExFVz0ViYoYlMh6h1gYW7lHW3BR5isb/1082130492.png"
