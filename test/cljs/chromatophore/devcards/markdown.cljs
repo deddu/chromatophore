@@ -2,6 +2,7 @@
   (:require [chromatophore.markdown :refer [md]]
             [cljs.test :refer-macros [testing is]]
             [devcards.core :refer-macros [defcard-rg deftest]]
+            [clojure.string :refer [split-lines trim join]]
             [reagent.core :as reagent]))
 
 (def is-client?
@@ -39,22 +40,28 @@
            Below is a little demonstration of the `[md ...]` component we will use based on `yogthos/markdown-clj`.
            "
             [md
-             "
-          <hr/>
-           This is some test text, should have *cool* formatting.
+             (->>
+               "<hr/>
+               This is some test text, should have *cool* formatting.
 
-           Here's a list:
+               Here's a list:
 
+               - 1
+               - 2
+               - 3
 
-           Here's some (inline) code `blah`. This is a block of code:
+               Here's some (inline) code `blah`. This is a block of code:
+               ```javascript
+               console.log('Best programming language EVAR');
+               ```
 
-           ```javascript
-           console.log('Best programming language EVAR');
-           ```
-
-          Here's a quote:
-          > \"Simple made easy\" ~ From the dude who invented the `clojure.lang.IMap` interface
-          "])
+               Here's a quote:
+               > \"Simple made easy\"<br/>
+               > ~ *From the dude who invented the `clojure.lang.IMap` interface*
+               "
+               split-lines
+               (map trim)
+               (join "\n"))])
 
 (deftest
   markdown-test
