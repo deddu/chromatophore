@@ -1,4 +1,4 @@
-(defproject chromatophore "0.1.0-SNAPSHOT"
+(defproject chromatophore "0.1.0"
   :description "FIXME"
   :url "FIXME"
 
@@ -64,6 +64,7 @@
                                        :output-to            "resources/public/js/compiled/chromatophore_devcards.js"
                                        :output-dir           "resources/public/js/compiled/devcards_out"
                                        :source-map-timestamp true}}
+                       
                        {:id           "test"
                         :source-paths ["src/cljs" "src/cljc" "test/cljc" "test/cljs" "test/doo"]
                         :compiler     {:output-to     "target/js/compiled/testable.js"
