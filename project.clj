@@ -13,10 +13,9 @@
                  [reagent "0.6.0-alpha"]]
 
   :clean-targets ^{:protect false} [:target-path
-                                    "resources/public/js/compiled/"
-                                    "resources/public/css/compiled/"
-                                    "out/"
-                                    "dev-resources/"]
+                                    "dev-resources/public/js/compiled/"
+                                    "dev-resources/public/css/compiled/"
+                                    "out/"]
 
   :profiles
   {:dev
@@ -25,7 +24,6 @@
                     :exclusions
                     [[org.apache.commons/commons-compress]
                      [org.clojure/clojure]]]
-                   [org.apache.commons/commons-compress "1.4"]
                    [lein-npm "0.6.2"]
                    [lein-figwheel "0.5.0-6"]
                    [lein-garden "0.2.6"]
@@ -33,14 +31,17 @@
                    [lein-pdo "0.1.1"]
                    [lein-shell "0.5.0"]]
 
+    :resource-paths ["dev-resources/"]
+
     :dependencies [[devcards "0.2.1-6"]
+                   [org.apache.commons/commons-compress "1.4"]
                    [javax.servlet/servlet-api "2.5"]]
 
     :garden       {:builds
                    [{:id           "screen"
                      :source-paths ["src/clj"]
                      :stylesheet   chromatophore.css.screen/style
-                     :compiler     {:output-to     "resources/public/css/compiled/screen.css"
+                     :compiler     {:output-to     "dev-resources/public/css/compiled/screen.css"
                                     :pretty-print? true}}]}
 
     ;; Use NPM to get slimerjs and phantomjs
@@ -51,8 +52,7 @@
                                    karma-chrome-launcher "0.2.2"
                                    karma "0.13.22"]]}
 
-    :doo          {:build "test"
-                   :paths {:slimer    "./node_modules/.bin/slimerjs"
+    :doo          {:paths {:slimer    "./node_modules/.bin/slimerjs"
                            :phantomjs "./node_modules/.bin/phantomjs"}
                    :alias {:browsers [:chrome :firefox]
                            :all      [:browsers :headless]}}
@@ -62,8 +62,8 @@
                              :figwheel     {:devcards true}
                              :compiler     {:main                 "chromatophore.devcards.core"
                                             :asset-path           "js/compiled/devcards_out"
-                                            :output-to            "resources/public/js/compiled/chromatophore_devcards.js"
-                                            :output-dir           "resources/public/js/compiled/devcards_out"
+                                            :output-to            "dev-resources/public/js/compiled/chromatophore_devcards.js"
+                                            :output-dir           "dev-resources/public/js/compiled/devcards_out"
                                             :source-map-timestamp true}}
 
                             {:id           "test"
@@ -103,7 +103,5 @@
                                           "doo" "all" "test-advanced" "once,"]
                    "advanced-test"       ["test-advanced"]
                    "deep-clean"          ["do"
-                                          "shell" "rm" "-rf"
-                                          "figwheel_server.log"
-                                          "node_modules,"
+                                          "shell" "rm" "-rf" "figwheel_server.log" "node_modules,"
                                           "clean"]}}})
