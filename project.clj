@@ -1,15 +1,15 @@
-(defproject chromatophore "0.1.3"
+(defproject chromatophore "0.1.4"
   :description "CuttleFi.sh Reusable Components for Reagent"
 
-  :source-paths ["src/clj" "src/cljc"]
+  :source-paths ["src/clj" "src/cljc" "src/cljs"]
   :test-paths ["test/cljc"]
 
-  :dependencies [[garden "1.3.0"]
+  :dependencies [[garden "1.3.2"]
                  [hiccup "1.0.5"]
-                 [markdown-clj "0.9.85"]
+                 [markdown-clj "0.9.87"]
                  [org.clojure/clojure "1.8.0"]
-                 [org.clojure/clojurescript "1.8.34"]
-                 [prismatic/schema "1.0.4"]
+                 [org.clojure/clojurescript "1.8.40"]
+                 [prismatic/schema "1.1.0"]
                  [reagent "0.6.0-alpha"]]
 
   :clean-targets ^{:protect false} [:target-path
@@ -25,7 +25,7 @@
                       [[org.apache.commons/commons-compress]
                        [org.clojure/clojure]]]
                      [lein-npm "0.6.2"]
-                     [lein-figwheel "0.5.0-6"]
+                     [lein-figwheel "0.5.2"]
                      [lein-garden "0.2.6"]
                      [lein-doo "0.1.6"]
                      [lein-pdo "0.1.1"]
@@ -34,7 +34,8 @@
     :resource-paths ["dev-resources/"]
 
     :dependencies   [[devcards "0.2.1-6"]
-                     [org.apache.commons/commons-compress "1.4"]
+                     [org.apache.commons/commons-compress "1.11"]
+                     [doo "0.1.6"]
                      [javax.servlet/servlet-api "2.5"]]
 
     :garden         {:builds
@@ -45,8 +46,8 @@
                                       :pretty-print? true}}]}
 
     ;; Use NPM to get slimerjs and phantomjs
-    :npm            {:dependencies [[slimerjs "0.9.6"
-                                     phantomjs-prebuilt "2.1.5"
+    :npm            {:dependencies [[slimerjs "0.906.1"
+                                     phantomjs-prebuilt "2.1.7"
                                      karma-cljs-test "0.1.0"
                                      karma-firefox-launcher "0.1.7"
                                      karma-chrome-launcher "0.2.2"
@@ -67,13 +68,13 @@
                                               :source-map-timestamp true}}
 
                               {:id           "test"
-                               :source-paths ["src/cljs" "src/cljc" "test/cljc" "test/cljs" "test/doo"]
+                               :source-paths ["src/cljs" "src/cljc" "test/cljc" "test/cljs"]
                                :compiler     {:output-to     "target/js/compiled/testable.js"
                                               :main          "chromatophore.doo.runner"
                                               :optimizations :none}}
 
                               {:id           "test-advanced"
-                               :source-paths ["src/cljs" "src/cljc" "test/cljs" "test/cljc" "test/doo"]
+                               :source-paths ["src/cljs" "src/cljc" "test/cljs" "test/cljc"]
                                :compiler     {:output-to     "target/js/compiled/testable.min.js"
                                               :main          "chromatophore.doo.runner"
                                               :optimizations :advanced
