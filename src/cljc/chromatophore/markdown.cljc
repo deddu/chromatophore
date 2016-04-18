@@ -16,8 +16,6 @@
   [props,
    text :- schema/Str]
   [:div.markdown
-   #?(:cljs (assoc props
-              :dangerouslySetInnerHTML
-              {:__html (md->html text)})
+   #?(:cljs (assoc-in props [:dangerouslySetInnerHTML :__html] (md->html text))
       :clj  props)
    #?(:clj (md-to-html-string test))])
