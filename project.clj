@@ -54,7 +54,8 @@
                                      karma "0.13.22"]]}
 
     :doo            {:paths {:slimer    "./node_modules/.bin/slimerjs"
-                             :phantomjs "./node_modules/.bin/phantomjs"}
+                             :phantomjs "./node_modules/.bin/phantomjs"
+                             :karma     "./node_modules/.bin/karma"}
                      :alias {:browsers [:chrome :firefox]
                              :all      [:browsers :headless]}}
 
