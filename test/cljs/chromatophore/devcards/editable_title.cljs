@@ -19,8 +19,7 @@
       - All parameters (such as `style`) should be passed to the underlying `div`
       - If the argument is an `atom`, it should be dereferenced."
 
-  [click-to-edit
-   "click to edit me!"])
+  [click-to-edit "click to edit me!"])
 
 (defcard-rg double-click-to-edit
   "For this click to edit component, you must *double click*"
