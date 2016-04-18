@@ -7,3 +7,4 @@ dev-resources/public/css/compiled/
 dev-resources/public/js/compiled/
 figwheel_server.log
 out/
+*~
