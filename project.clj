@@ -59,9 +59,6 @@
                    :alias {:browsers [:chrome :firefox]
                            :all      [:browsers :headless]}}
 
-  ;; Prevent dock icon in OS X
-  :jvm-opts      ["-Dapple.awt.UIElement=true"]
-
   :cljsbuild     {:builds [{:id           "devcards"
                             :source-paths ["src/cljs" "src/cljc" "test/cljs" "test/cljc"]
                             :figwheel     {:devcards true}
