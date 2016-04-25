@@ -8,3 +8,5 @@ dev-resources/public/js/compiled/
 figwheel_server.log
 out/
 *~
+.cljs_rhino_repl/
+.lein-repl-history
