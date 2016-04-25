@@ -44,7 +44,6 @@
            (apply fnp# {} args#)
            (apply fnp# args#))))))
 
-;; TODO: support schema
 (defmacro defnp
   "A macro for defining functions that take an optional first argument, that is a map of parameters"
   [fn-name & body]
