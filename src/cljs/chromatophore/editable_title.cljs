@@ -6,8 +6,7 @@
             [reagent.ratom
              :refer-macros [run!]
              :refer [atom]])
-  (:import goog.dom.Range
-           goog.userAgent))
+  (:import goog.dom.Range))
 
 (defn- munge-value
   "Trim the whitespace and collapse multiple whitespace characters for a string value"
@@ -25,7 +24,6 @@
       (clojure.string/replace "<" "&lt;")
       (clojure.string/replace ">" "&gt;")
       (clojure.string/replace "\"" "&quot;")))
-
 
 ;; https://stackoverflow.com/questions/6139107/programatically-select-text-in-a-contenteditable-html-element
 (defn- select-text
@@ -130,16 +128,16 @@
                                                           :double on-double-click
                                                           nil) %))
 
-                :on-key-down             #(case (.-which %)
-                                            13 (save %)
-                                            27 (stop %)
-                                            nil)
+              :on-key-down             #(case (.-which %)
+                                          13 (save %)
+                                          27 (stop %)
+                                          nil)
 
-                :on-blur                 #(when @editing? (save %))
+              :on-blur                 #(when @editing? (save %))
 
-                :on-input                #(reset!
-                                           input-value
-                                           (-> % .-target .-textContent)))
+              :on-input                #(reset!
+                                         input-value
+                                         (-> % .-target .-textContent)))
              (when-not @editing? (get-value))]]))))
 
 (defnp click-icon-to-edit
