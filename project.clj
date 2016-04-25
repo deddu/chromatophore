@@ -6,9 +6,9 @@
 
   :dependencies [[garden "1.3.2"]
                  [hiccup "1.0.5"]
-                 [markdown-clj "0.9.87"]
+                 [markdown-clj "0.9.88"]
                  [org.clojure/clojure "1.8.0"]
-                 [org.clojure/clojurescript "1.8.40"]
+                 [org.clojure/clojurescript "1.8.51"]
                  [prismatic/schema "1.1.0"]
                  [reagent "0.6.0-alpha"]]
 
@@ -36,74 +36,77 @@
     :dependencies   [[devcards "0.2.1-6"]
                      [org.apache.commons/commons-compress "1.11"]
                      [doo "0.1.6"]
-                     [javax.servlet/servlet-api "2.5"]]
+                     [javax.servlet/servlet-api "2.5"]]}}
 
-    :garden         {:builds
-                     [{:id           "screen"
-                       :source-paths ["src/clj"]
-                       :stylesheet   chromatophore.css.screen/style
-                       :compiler     {:output-to     "dev-resources/public/css/compiled/screen.css"
-                                      :pretty-print? true}}]}
+  :garden         {:builds
+                   [{:id           "screen"
+                     :source-paths ["src/clj"]
+                     :stylesheet   chromatophore.css.screen/style
+                     :compiler     {:output-to     "dev-resources/public/css/compiled/screen.css"
+                                    :pretty-print? true}}]}
 
-    ;; Use NPM to get slimerjs and phantomjs
-    :npm            {:dependencies [[slimerjs "0.906.1"
-                                     phantomjs-prebuilt "2.1.7"
-                                     karma-cljs-test "0.1.0"
-                                     karma-firefox-launcher "0.1.7"
-                                     karma-chrome-launcher "0.2.2"
-                                     karma "0.13.22"]]}
+  ;; Use NPM to get slimerjs and phantomjs
+  :npm            {:dependencies [[slimerjs "0.906.1"
+                                   phantomjs-prebuilt "2.1.7"
+                                   karma-cljs-test "0.1.0"
+                                   karma-firefox-launcher "0.1.7"
+                                   karma-chrome-launcher "0.2.2"
+                                   karma "0.13.22"]]}
 
-    :doo            {:paths {:slimer    "./node_modules/.bin/slimerjs"
-                             :phantomjs "./node_modules/.bin/phantomjs"
-                             :karma     "./node_modules/.bin/karma"}
-                     :alias {:browsers [:chrome :firefox]
-                             :all      [:browsers :headless]}}
+  :doo            {:paths {:slimer    "./node_modules/.bin/slimerjs"
+                           :phantomjs "./node_modules/.bin/phantomjs"
+                           :karma     "./node_modules/.bin/karma"}
+                   :alias {:browsers [:chrome :firefox]
+                           :all      [:browsers :headless]}}
 
-    :cljsbuild      {:builds [{:id           "devcards"
-                               :source-paths ["src/cljs" "src/cljc" "test/cljs" "test/cljc"]
-                               :figwheel     {:devcards true}
-                               :compiler     {:main                 "chromatophore.devcards.core"
-                                              :asset-path           "js/compiled/devcards_out"
-                                              :output-to            "dev-resources/public/js/compiled/chromatophore_devcards.js"
-                                              :output-dir           "dev-resources/public/js/compiled/devcards_out"
-                                              :source-map-timestamp true}}
+  ;; Prevent dock icon in OS X
+  :jvm-opts      ["-Dapple.awt.UIElement=true"]
 
-                              {:id           "test"
-                               :source-paths ["src/cljs" "src/cljc" "test/cljc" "test/cljs"]
-                               :compiler     {:output-to     "target/js/compiled/testable.js"
-                                              :main          "chromatophore.doo.runner"
-                                              :optimizations :none}}
+  :cljsbuild     {:builds [{:id           "devcards"
+                            :source-paths ["src/cljs" "src/cljc" "test/cljs" "test/cljc"]
+                            :figwheel     {:devcards true}
+                            :compiler     {:main                 "chromatophore.devcards.core"
+                                           :asset-path           "js/compiled/devcards_out"
+                                           :output-to            "dev-resources/public/js/compiled/chromatophore_devcards.js"
+                                           :output-dir           "dev-resources/public/js/compiled/devcards_out"
+                                           :source-map-timestamp true}}
 
-                              {:id           "test-advanced"
-                               :source-paths ["src/cljs" "src/cljc" "test/cljs" "test/cljc"]
-                               :compiler     {:output-to     "target/js/compiled/testable.min.js"
-                                              :main          "chromatophore.doo.runner"
-                                              :optimizations :advanced
-                                              :pretty-print  false}}]}
+                           {:id           "test"
+                            :source-paths ["src/cljs" "src/cljc" "test/cljc" "test/cljs"]
+                            :compiler     {:output-to     "target/js/compiled/testable.js"
+                                           :main          "chromatophore.doo.runner"
+                                           :optimizations :none}}
 
-    :figwheel       {:css-dirs ["resources/public/css"]}
-    :aliases        {"garden-and-devcards" ["pdo"
-                                            "garden" "auto,"
-                                            "test-refresh,"
-                                            "figwheel,"]
-                     "devcards"            ["do"
-                                            "clean,"
-                                            "garden" "once,"
-                                            "test,"
-                                            "garden-and-devcards,"]
-                     "test-auto"           ["do"
-                                            "clean,"
-                                            "npm" "install,"
-                                            "doo" "phantom" "test" "auto,"]
-                     "auto-test"           ["test-auto"]
-                     "test-advanced"       ["do"
-                                            "clean,"
-                                            "npm" "install,"
-                                            "garden" "once,"
-                                            "test,"
-                                            "doo" "all" "test" "once,"
-                                            "doo" "all" "test-advanced" "once,"]
-                     "advanced-test"       ["test-advanced"]
-                     "deep-clean"          ["do"
-                                            "shell" "rm" "-rf" "figwheel_server.log" "node_modules,"
-                                            "clean"]}}})
+                           {:id           "test-advanced"
+                            :source-paths ["src/cljs" "src/cljc" "test/cljs" "test/cljc"]
+                            :compiler     {:output-to     "target/js/compiled/testable.min.js"
+                                           :main          "chromatophore.doo.runner"
+                                           :optimizations :advanced
+                                           :pretty-print  false}}]}
+
+  :figwheel      {:css-dirs ["resources/public/css"]}
+  :aliases       {"garden-and-devcards" ["pdo"
+                                         "garden" "auto,"
+                                         "test-refresh,"
+                                         "figwheel,"]
+                  "devcards"            ["do"
+                                         "clean,"
+                                         "garden" "once,"
+                                         "test,"
+                                         "garden-and-devcards,"]
+                  "test-auto"           ["do"
+                                         "clean,"
+                                         "npm" "install,"
+                                         "doo" "phantom" "test" "auto,"]
+                  "auto-test"           ["test-auto"]
+                  "test-advanced"       ["do"
+                                         "clean,"
+                                         "npm" "install,"
+                                         "garden" "once,"
+                                         "test,"
+                                         "doo" "all" "test" "once,"
+                                         "doo" "all" "test-advanced" "once,"]
+                  "advanced-test"       ["test-advanced"]
+                  "deep-clean"          ["do"
+                                         "shell" "rm" "-rf" "figwheel_server.log" "node_modules,"
+                                         "clean"]})
