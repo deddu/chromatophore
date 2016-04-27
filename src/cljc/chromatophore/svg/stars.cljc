@@ -13,8 +13,9 @@
 
 (defnp star
   "An SVG Star"
-  [{:keys [:class :fill]
-    :or {:stroke "currentColor"
+  [{:keys [:class :fill :stroke]
+    :or {:class  ""
+         :stroke "currentColor"
          :fill   "currentColor"}
     :as params}]
   [:svg {:xmlns "http://www.w3.org/2000/svg"
@@ -58,6 +59,7 @@
   "Represent a score from 0 to 5 with SVG stars, including partial stars for partial points"
   [{:keys [:start :score :class :error :fill :stroke]
     :or {:error  0
+         :class ""
          :fill   "currentColor"
          :stroke "currentColor"}
     :as params}]
