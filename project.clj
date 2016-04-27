@@ -1,4 +1,4 @@
-(defproject chromatophore "0.1.5"
+(defproject chromatophore "0.1.6"
   :description "CuttleFi.sh Reusable Components for Reagent"
 
   :source-paths ["src/clj" "src/cljc" "src/cljs"]
