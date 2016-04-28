@@ -2,7 +2,7 @@
   :description "CuttleFi.sh Reusable Components for Reagent"
 
   :source-paths ["src/clj" "src/cljc" "src/cljs"]
-  :test-paths ["test/cljc"]
+  :test-paths ["test/cljc" "test/cljs"]
 
   :dependencies [[garden "1.3.2"]
                  [hiccup "1.0.5"]
