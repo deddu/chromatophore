@@ -25,3 +25,6 @@
 
 (defcard-rg Green-4.7-Stars-Error-2-Blue-Stroke
   [five-star-rating {:score 4.7 :error 2 :fill "green" :stroke "blue"}])
+
+(defcard-rg White-4.7-Stars-Error-2-Red-Stroke-On-Black-Background
+  [five-star-rating {:score 4.7 :error 2 :background-color "black" :color "gray" :stroke "red"}])

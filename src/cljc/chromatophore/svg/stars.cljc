@@ -48,22 +48,33 @@
            :stop-color fill
            :stop-opacity 0}]])
 
-(def five-star-rating-css-class
-  "CSS Class for a five-star rating"
-  ;; Default to line-height
-  [:svg.five-star-rating {:height "1em"}])
-
 (def ^:private five-stars
   (for [i (range 5)]
     (nth (star {:transform (str "translate(" (* i star-width) ")")
                 :fill "none"
                 :stroke "none"}) 2)))
 
+(def five-star-rating-css-class
+  "CSS Class for a five-star rating"
+  ;; Default to line-height
+  [:svg.five-star-rating {:height "1em"}])
+
 (defnp ^{:style five-star-rating-css-class}
   five-star-rating
-  "Represent a score from 0 to 5 with SVG stars, including partial stars for partial points"
-  [{:keys [:start :score :class :error :fill :stroke]
+  "Represent a score from 0 to 5 with SVG stars, including partial stars for partial points.
+
+Takes a map with the following parameters:
+
+  - :score             A number from 0 to 5 (not optional)
+  - :error             A non-negative number (defaults to 0)
+  - :class             A class which the entire SVG will take on, along with 'five-star-rating' (defaults to nil)
+  - :color             The color that stars, partial stars and their borders will take (defaults to nil)
+  - :background-color  The background color that empty and partial stars will take (defaults to 'rgba(0,0,0,0)')
+  - :fill              The fill color that stars and partial stars will take (overrides :color)
+  - :stroke            The color that stars will take as their border (overrides :color)"
+  [{:keys [:score :error :class :fill :stroke :background-color]
     :or {:error  0
+         :background-color "rgba(0,0,0,0)"
          :fill   "currentColor"
          :stroke "currentColor"}
     :as params}]
@@ -71,7 +82,7 @@
   [:svg {:xmlns "http://www.w3.org/2000/svg"
          :viewBox (string/join " " [208 141.75 (* 5 star-width) star-height])
          :class (str class " five-star-rating")}
-   (into [:g {:color "rgba(0,0,0,0)", :class "star-background"}]
+   (into [:g {:color background-color, :class "star-background"}]
          (for [star five-stars]
            (assoc-in star [1 :fill] "currentColor")))
    (let [error-gradient-id (str "five-star-rating-error-gradient-" (hash params))
