@@ -14,8 +14,7 @@
 (defnp star
   "An SVG Star"
   [{:keys [:class :fill :stroke]
-    :or {:class  ""
-         :stroke "currentColor"
+    :or {:stroke "currentColor"
          :fill   "currentColor"}
     :as params}]
   [:svg {:xmlns "http://www.w3.org/2000/svg"
@@ -54,26 +53,29 @@
   ;; Default to line-height
   [:svg.five-star-rating {:height "1em"}])
 
+(def ^:private five-stars
+  (for [i (range 5)]
+    (nth (star {:transform (str "translate(" (* i star-width) ")")
+                :fill "none"
+                :stroke "none"}) 2)))
+
 (defnp ^{:style five-star-rating-css-class}
   five-star-rating
   "Represent a score from 0 to 5 with SVG stars, including partial stars for partial points"
   [{:keys [:start :score :class :error :fill :stroke]
     :or {:error  0
-         :class ""
          :fill   "currentColor"
          :stroke "currentColor"}
     :as params}]
   (check-score-and-error-assertions score error)
-  (let [five-stars
-        (for [i (range 5)]
-          (nth (star {:fill "none"
-                      :transform (str "translate(" (* i star-width) ")")
-                      :stroke stroke}) 2))
-        error-gradient-id (str "error-gradient-" (hash params))
-        stars-id          (str "stars-" (hash params))]
-    [:svg {:xmlns "http://www.w3.org/2000/svg"
-           :viewBox (string/join " " [208 141.75 (* 5 star-width) star-height])
-           :class (str class " five-star-rating")}
+  [:svg {:xmlns "http://www.w3.org/2000/svg"
+         :viewBox (string/join " " [208 141.75 (* 5 star-width) star-height])
+         :class (str class " five-star-rating")}
+   (into [:g {:color "rgba(0,0,0,0)", :class "star-background"}]
+         (for [star five-stars]
+           (assoc-in star [1 :fill] "currentColor")))
+   (let [error-gradient-id (str "five-star-rating-error-gradient-" (hash params))
+         stars-id          (str "five-star-rating-stars-" (hash params))]
      [:g (assoc params :class "stars")
       [:defs
        [linear-gradient {:id error-gradient-id,
@@ -91,6 +93,7 @@
               :stroke "none"
               :style  {:clip-path (str "url(#" stars-id ")")
                        :fill (str "url(#" error-gradient-id ")")},
-              :width  (* error star-width)}]]
-     (into [:g (assoc params :class "star-border")]
-           five-stars)]))
+              :width  (* error star-width)}]])
+   (into [:g (assoc params :class "star-border")]
+         (for [star five-stars]
+           (assoc-in star [1 :stroke] stroke)))])
