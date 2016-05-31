@@ -3,4 +3,5 @@
             [chromatophore.devcards.svg.stars]
             [chromatophore.utils-test]
             [chromatophore.devcards.editable-title]
+            [chromatophore.devcards.mdl]
             [chromatophore.devcards.toggle]))
